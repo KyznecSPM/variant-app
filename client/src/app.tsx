@@ -3,9 +3,13 @@ import './assets/fonts/fonts.css';
 import './styles/tokens.css';
 import './styles/base.css';
 
+import { Route, Routes } from 'react-router';
+
 import { AppLayout } from './components/AppLayout';
 import { Header } from './components/Header';
+import { ROUTES } from './constants';
 import { ApplicationsPage } from './pages/ApplicationsPage';
+import { GeneratorPage } from './pages/GeneratorPage';
 import { CoverLettersProvider } from './providers';
 
 export const App = () => {
@@ -13,7 +17,10 @@ export const App = () => {
     <CoverLettersProvider>
       <AppLayout>
         <Header />
-        <ApplicationsPage />
+        <Routes>
+          <Route path={ROUTES.APPLICATIONS} element={<ApplicationsPage />} />
+          <Route path={ROUTES.GENERATE} element={<GeneratorPage />} />
+        </Routes>
       </AppLayout>
     </CoverLettersProvider>
   );

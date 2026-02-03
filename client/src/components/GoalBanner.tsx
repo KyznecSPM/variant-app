@@ -1,3 +1,6 @@
+import { useNavigate } from 'react-router';
+
+import { ROUTES } from '../constants';
 import { useCoverLetters } from '../providers';
 import { Button, ButtonSize } from './Button';
 import styles from './GoalBanner.module.css';
@@ -10,8 +13,14 @@ const caption =
 const buttonText = 'Create New';
 
 export const GoalBanner = () => {
+  const navigate = useNavigate();
   const letters = useCoverLetters();
   const count = letters.length;
+
+  const handleCreateNewClick = () => {
+    navigate(ROUTES.GENERATE);
+  };
+
   return (
     <div className={styles.goalBanner}>
       <div className={styles.content}>
@@ -19,7 +28,7 @@ export const GoalBanner = () => {
           {title}
         </Text.Heading>
         <Text.Caption>{caption}</Text.Caption>
-        <Button size={ButtonSize.lg} icon="plus">
+        <Button size={ButtonSize.lg} icon="plus" onClick={handleCreateNewClick}>
           {buttonText}
         </Button>
       </div>

@@ -5,13 +5,14 @@ import type { ButtonSize as ButtonSizeType, IconName } from './types';
 export interface Props {
   icon: IconName;
   size?: ButtonSizeType;
+  onClick?: () => void;
 }
 
-export const IconButton = ({ icon, size = ButtonSize.md }: Props) => {
+export const IconButton = ({ icon, size = ButtonSize.md, onClick }: Props) => {
   const Icon = icon ? IconNamesMap[icon] : null;
 
   return (
-    <button className={styles.iconButton}>
+    <button className={styles.iconButton} onClick={onClick}>
       {Icon && <Icon width={IconSizeMap[size]} height={IconSizeMap[size]} />}
     </button>
   );
