@@ -1,3 +1,12 @@
+import { ApplicationForm } from '../components/ApplicationForm';
+import { GeneratorPageLayout } from '../components/GeneratorPageLayout';
+import { MarkdownViewer } from '../components/MarkdownViewer';
+
 export const GeneratorPage = () => {
-  return <div>GeneratorPage</div>;
+  return (
+    <GeneratorPageLayout>
+      <ApplicationForm />
+      <MarkdownViewer />
+    </GeneratorPageLayout>
+  );
 };
