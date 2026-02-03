@@ -25,7 +25,7 @@
   --fs-heading-2: 36px;
   --lh-heading-2: 44px;
   --ls-heading-2: -0.02em;
-  --ls-label: 0%;
+  --ls-label: 0;
   --fs-label-sm: 14px;
   --lh-label-sm: 20px;
   --fs-label-md: 16px;
@@ -34,7 +34,7 @@
   --lh-label-lg: 28px;
   --fs-caption: 18px;
   --lh-caption: 28px;
-  --ls-caption: 0%;
+  --ls-caption: 0;
 
   /* Colors */
   --color-text-primary: #101828;
@@ -57,4 +57,5 @@
   /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgb(16 24 40 / 5%);
   --shadow-md: 0px 1px 2px 0px #1018280d;
+  --shadow-focus: 0 0 0 3px rgb(8 116 67 / 10%);
 }

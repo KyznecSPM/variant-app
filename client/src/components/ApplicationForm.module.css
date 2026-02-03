@@ -72,7 +72,7 @@
 .input:focus,
 .textarea:focus {
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgb(8 116 67 / 10%);
+  box-shadow: var(--shadow-focus);
 }
 
 .counter {

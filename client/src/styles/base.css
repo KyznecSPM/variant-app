@@ -14,12 +14,12 @@ html {
 
 body {
   margin: 0;
-  background-color: var(--color-white);
-  color: var(--color-gray-900);
+  background-color: var(--color-text-white);
+  color: var(--color-text-primary);
   font-family: var(--font-family-text);
-  font-size: var(--font-size-body);
-  font-weight: var(--font-weight-regular);
-  line-height: var(--line-height-body);
+  font-size: var(--fs-label-md);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-label-md);
 }
 
 /* Typography Resets */
