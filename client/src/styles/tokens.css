@@ -25,9 +25,9 @@
   --fs-heading-2: 36px;
   --lh-heading-2: 44px;
   --ls-heading-2: -0.02em;
-  --fs-labe-sm: 16px;
-  --lh-label-sm: 24px;
   --ls-label: 0%;
+  --fs-label-sm: 14px;
+  --lh-label-sm: 20px;
   --fs-label-md: 16px;
   --lh-label-md: 24px;
   --fs-label-lg: 18px;
@@ -40,8 +40,11 @@
   --color-text-primary: #101828;
   --color-text-white: #fff;
   --color-text-caption: #667085;
+  --color-text-label: #344054;
+  --color-text-counter: #475467;
   --color-primary: #087443;
   --color-border: #eaecf0;
+  --color-border-input: #d0d5dd;
   --color-border-secondary: #e4e7ec;
   --color-bg-primary: #edfcf2;
   --color-bg-stepper: #101828;

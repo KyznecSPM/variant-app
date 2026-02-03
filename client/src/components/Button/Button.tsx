@@ -13,6 +13,7 @@ export interface ButtonProps {
   variant?: ButtonVariant;
   size?: ButtonSize;
   icon?: IconName;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 export const Button = ({
@@ -23,6 +24,7 @@ export const Button = ({
   variant = 'primary',
   size = 'md',
   icon,
+  type = 'button',
 }: ButtonProps) => {
   const buttonClass = cn(
     styles.button,
@@ -34,7 +36,12 @@ export const Button = ({
   const Icon = icon ? IconNamesMap[icon] : null;
 
   return (
-    <button className={buttonClass} onClick={onClick} disabled={disabled}>
+    <button
+      type={type}
+      className={buttonClass}
+      onClick={onClick}
+      disabled={disabled}
+    >
       {Icon && <Icon width={IconSizeMap[size]} height={IconSizeMap[size]} />}
       <Text.Label size={size} color={TextColorMap[variant]}>
         {children}

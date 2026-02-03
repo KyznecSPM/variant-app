@@ -26,6 +26,18 @@
 
 .button:active {
   opacity: 0.6;
+  transform: scale(0.98);
+}
+
+.button:disabled {
+  border-color: var(--color-border-input);
+  background: var(--color-border-input);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.button:disabled:hover {
+  opacity: 0.6;
 }
 
 .buttonSize_sm {
