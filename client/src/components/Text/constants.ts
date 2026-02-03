@@ -3,6 +3,7 @@ export const TextColor = {
   secondary: 'secondary',
   white: 'white',
   caption: 'caption',
+  counter: 'counter',
 } as const;
 //   | 'tertiary'
 //   | 'error'

@@ -67,3 +67,7 @@
 .textColor_caption {
   color: var(--color-text-caption);
 }
+
+.textColor_counter {
+  color: var(--color-text-counter);
+}

@@ -8,8 +8,7 @@ import styles from './ApplicationForm.module.css';
 import { Button } from './Button';
 import { Text } from './Text';
 
-const MOCK_APPLICATION_TEXT = `
-Dear [Company] Team,
+const MOCK_APPLICATION_TEXT = `Dear [Company] Team,
 
 I am writing to express my interest in the [JobTitle] position.
 
@@ -19,8 +18,7 @@ My experience in the realm combined with my skills in [SkillsList] make me a str
 
 I am confident that my skills and enthusiasm would translate into valuable contributions to your esteemed organization.
 
-Thank you for considering my application. I eagerly await the opportunity to discuss my qualifications further.
-`;
+Thank you for considering my application. I eagerly await the opportunity to discuss my qualifications further.`;
 
 const defaultValues = {
   jobTitle: '',

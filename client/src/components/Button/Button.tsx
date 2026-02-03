@@ -13,6 +13,7 @@ export interface ButtonProps {
   variant?: ButtonVariant;
   size?: ButtonSize;
   icon?: IconName;
+  iconPosition?: 'left' | 'right';
   type?: 'button' | 'submit' | 'reset';
 }
 
@@ -24,6 +25,7 @@ export const Button = ({
   variant = 'primary',
   size = 'md',
   icon,
+  iconPosition = 'left',
   type = 'button',
 }: ButtonProps) => {
   const buttonClass = cn(
@@ -42,10 +44,15 @@ export const Button = ({
       onClick={onClick}
       disabled={disabled}
     >
-      {Icon && <Icon width={IconSizeMap[size]} height={IconSizeMap[size]} />}
+      {Icon && iconPosition === 'left' && (
+        <Icon width={IconSizeMap[size]} height={IconSizeMap[size]} />
+      )}
       <Text.Label size={size} color={TextColorMap[variant]}>
         {children}
       </Text.Label>
+      {Icon && iconPosition === 'right' && (
+        <Icon width={IconSizeMap[size]} height={IconSizeMap[size]} />
+      )}
     </button>
   );
 };

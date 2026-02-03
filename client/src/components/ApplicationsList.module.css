@@ -1,5 +1,6 @@
 .applicationsList {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  display: grid;
+  margin-top: 24px;
+  gap: 24px 16px;
+  grid-template-columns: repeat(2, 1fr);
 }
