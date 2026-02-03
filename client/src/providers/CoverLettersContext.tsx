@@ -4,9 +4,9 @@ export type CoverLetter = {
   id: string;
   company: string;
   jobTitle: string;
-  goodAt: string;
-  details: string;
-  createdAt: string;
+  skills: string;
+  additionalDetails: string;
+  applicationText: string;
 };
 
 export const CoverLettersStateContext = createContext<

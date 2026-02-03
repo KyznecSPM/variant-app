@@ -1,15 +1,35 @@
 import { useForm, useWatch } from 'react-hook-form';
+import { v4 as uuidv4 } from 'uuid';
 
 import { MAX_DETAILS_LENGTH } from '../constants';
+import type { CoverLetter } from '../providers';
+import { useCoverLettersActions } from '../providers';
 import styles from './ApplicationForm.module.css';
 import { Button } from './Button';
 import { Text } from './Text';
-interface ApplicationFormData {
-  jobTitle: string;
-  company: string;
-  skills: string;
-  additionalDetails: string;
-}
+
+const MOCK_APPLICATION_TEXT = `
+Dear [Company] Team,
+
+I am writing to express my interest in the [JobTitle] position.
+
+My experience in the realm combined with my skills in [SkillsList] make me a strong candidate for this role.
+
+[AdditionalDetails]
+
+I am confident that my skills and enthusiasm would translate into valuable contributions to your esteemed organization.
+
+Thank you for considering my application. I eagerly await the opportunity to discuss my qualifications further.
+`;
+
+const defaultValues = {
+  jobTitle: '',
+  company: '',
+  skills: '',
+  additionalDetails: '',
+};
+
+type ApplicationFormData = Omit<CoverLetter, 'id' | 'applicationText'>;
 
 export const ApplicationForm = () => {
   const {
@@ -19,13 +39,10 @@ export const ApplicationForm = () => {
     formState: { isValid },
   } = useForm<ApplicationFormData>({
     mode: 'onChange',
-    defaultValues: {
-      jobTitle: '',
-      company: '',
-      skills: '',
-      additionalDetails: '',
-    },
+    defaultValues,
   });
+
+  const { addLetter } = useCoverLettersActions();
 
   const jobTitle = useWatch({ control, name: 'jobTitle' });
   const company = useWatch({ control, name: 'company' });
@@ -40,6 +57,20 @@ export const ApplicationForm = () => {
   const onSubmit = (data: ApplicationFormData) => {
     // TODO: Implement form submission logic
     console.log('Form submitted:', data);
+    addLetter({
+      id: uuidv4(),
+      jobTitle: data.jobTitle,
+      company: data.company,
+      skills: data.skills,
+      additionalDetails: data.additionalDetails,
+      applicationText: MOCK_APPLICATION_TEXT.replace(
+        '[JobTitle]',
+        data.jobTitle
+      )
+        .replace('[Company]', data.company)
+        .replace('[SkillsList]', data.skills)
+        .replace('[AdditionalDetails]', data.additionalDetails),
+    });
   };
 
   return (
