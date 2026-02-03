@@ -1,0 +1,57 @@
+:root {
+  /* Font Families */
+  --font-family-display:
+    'Fixel Display', -apple-system, blinkmacsystemfont, 'Segoe UI', system-ui,
+    sans-serif;
+  --font-family-text:
+    'Fixel Text', -apple-system, blinkmacsystemfont, 'Segoe UI', system-ui,
+    sans-serif;
+
+  /* Font Weights */
+  --fw-thin: 100;
+  --fw-extralight: 200;
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+  --fw-black: 900;
+
+  /* Typography */
+  --fs-heading-1: 48px;
+  --lh-heading-1: 60px;
+  --ls-heading-1: -0.02em;
+  --fs-heading-2: 36px;
+  --lh-heading-2: 44px;
+  --ls-heading-2: -0.02em;
+  --fs-labe-sm: 16px;
+  --lh-label-sm: 24px;
+  --ls-label: 0%;
+  --fs-label-md: 16px;
+  --lh-label-md: 24px;
+  --fs-label-lg: 18px;
+  --lh-label-lg: 28px;
+  --fs-caption: 18px;
+  --lh-caption: 28px;
+  --ls-caption: 0%;
+
+  /* Colors */
+  --color-text-primary: #101828;
+  --color-text-white: #fff;
+  --color-text-caption: #667085;
+  --color-primary: #087443;
+  --color-border: #eaecf0;
+  --color-border-secondary: #e4e7ec;
+  --color-bg-primary: #edfcf2;
+  --color-bg-stepper: #101828;
+
+  /* Border Radius */
+  --br-sm: 6px;
+  --br-md: 12px;
+  --br-circle: 50%;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(16 24 40 / 5%);
+  --shadow-md: 0px 1px 2px 0px #1018280d;
+}

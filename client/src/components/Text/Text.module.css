@@ -1,0 +1,69 @@
+/* Base styles */
+.text {
+  padding: 0;
+  margin: 0;
+}
+
+/* Headings */
+.heading {
+  font-family: var(--font-family-display);
+}
+
+.headingLevel_1 {
+  font-size: var(--fs-heading-1);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-heading-1);
+  line-height: var(--lh-heading-1);
+}
+
+.headingLevel_2 {
+  font-size: var(--fs-heading-2);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-heading-2);
+  line-height: var(--lh-heading-2);
+}
+
+/* Labels */
+.label {
+  font-family: var(--font-family-text);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-label);
+}
+
+.labelSize_sm {
+  font-size: var(--fs-label-sm);
+  line-height: var(--lh-label-sm);
+}
+
+.labelSize_md {
+  font-size: var(--fs-label-md);
+  line-height: var(--lh-label-md);
+}
+
+.labelSize_lg {
+  font-size: var(--fs-label-lg);
+  line-height: var(--lh-label-lg);
+}
+
+/* Captions */
+.caption {
+  font-family: var(--font-family-text);
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--ls-caption);
+  line-height: var(--lh-caption);
+}
+
+/* Text Colors */
+
+.textColor_primary {
+  color: var(--color-text-primary);
+}
+
+.textColor_white {
+  color: var(--color-text-white);
+}
+
+.textColor_caption {
+  color: var(--color-text-caption);
+}

@@ -1,0 +1,32 @@
+.progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.progressText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(1.5px);
+}
+
+.progressBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--br-circle);
+  background-color: var(--color-bg-stepper);
+  opacity: 0.24;
+}
+
+.dot.active {
+  opacity: 1;
+}
