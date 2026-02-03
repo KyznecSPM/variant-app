@@ -15,7 +15,9 @@ export const Header = () => {
 
   return (
     <header className={styles.header}>
-      <Logo />
+      <div className={styles.logo} onClick={handleHomeClick}>
+        <Logo />
+      </div>
       <div className={styles.container}>
         <Progress />
         <IconButton

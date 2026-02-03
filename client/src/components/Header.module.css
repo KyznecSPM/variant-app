@@ -4,6 +4,17 @@
   justify-content: space-between;
 }
 
+.logo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.logo:hover {
+  opacity: 0.8;
+}
+
 .container {
   display: flex;
   align-items: center;
