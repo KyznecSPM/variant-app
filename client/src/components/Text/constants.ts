@@ -4,6 +4,7 @@ export const TextColor = {
   white: 'white',
   caption: 'caption',
   counter: 'counter',
+  label: 'label',
 } as const;
 //   | 'tertiary'
 //   | 'error'

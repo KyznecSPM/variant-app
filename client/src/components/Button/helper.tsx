@@ -22,7 +22,7 @@ export type ButtonVariant = (typeof ButtonVariant)[keyof typeof ButtonVariant];
 
 export const TextColorMap = {
   [ButtonVariant.primary]: TextColor.white,
-  [ButtonVariant.secondary]: TextColor.primary,
+  [ButtonVariant.secondary]: TextColor.label,
   [ButtonVariant.ghost]: TextColor.counter,
 } as const;
 

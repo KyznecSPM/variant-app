@@ -71,3 +71,7 @@
 .textColor_counter {
   color: var(--color-text-counter);
 }
+
+.textColor_label {
+  color: var(--color-text-label);
+}

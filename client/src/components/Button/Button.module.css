@@ -60,7 +60,7 @@
 
 .buttonVariant_secondary {
   border-color: var(--color-border-input);
-  background-color: var(--color-bg-primary);
+  background-color: #fff;
 }
 
 .buttonVariant_ghost {
