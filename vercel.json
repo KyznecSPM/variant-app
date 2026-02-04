@@ -1,14 +1,15 @@
 {
-  "builds": [
-    {
-      "src": "client/package.json",
-      "use": "@vercel/static-build",
-      "config": { "distDir": "dist" }
-    },
-    { "src": "api/src/index.ts", "use": "@vercel/node" }
-  ],
-  "routes": [
-    { "src": "/api/(.*)", "dest": "/api/src/index.ts" },
-    { "src": "/(.*)", "dest": "/client/dist/$1" }
+  "buildCommand": "npm run build --prefix client",
+  "installCommand": "npm install --prefix client && npm install --prefix api",
+  "outputDirectory": "client/dist",
+  "functions": {
+    "api/src/vercel.ts": {
+      "memory": 256,
+      "maxDuration": 30
+    }
+  },
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/src/vercel" },
+    { "source": "/(.*)", "destination": "/$1" }
   ]
 }

@@ -1,24 +1,15 @@
-import fastify from 'fastify';
-
-import { registerCors } from './plugins/cors';
-import { coverLetterRoutes } from './routes/cover-letter';
+import { buildApp } from './app';
 
 const port = parseInt(process.env.PORT || '8080', 10);
 const isDev = process.env.NODE_ENV !== 'production';
 const host = isDev ? 'localhost' : '0.0.0.0';
 
-const server = fastify({
-  logger: isDev,
-});
-
-// Graceful shutdown handler
-const gracefulShutdown = async (signal: string) => {
+const gracefulShutdown = async (signal: string, server: Awaited<ReturnType<typeof buildApp>>) => {
   console.log(`Received ${signal}. Starting graceful shutdown...`);
 
   try {
     await server.close();
     console.log('Server closed');
-
     process.exit(0);
   } catch (error) {
     console.error('Error during graceful shutdown:', error);
@@ -26,17 +17,12 @@ const gracefulShutdown = async (signal: string) => {
   }
 };
 
-// Register signal handlers for graceful shutdown
-process.on('SIGTERM', () => void gracefulShutdown('SIGTERM'));
-process.on('SIGINT', () => void gracefulShutdown('SIGINT'));
-
 const startServer = async () => {
   try {
-    // Register plugins
-    await registerCors(server);
+    const server = await buildApp();
 
-    // Register routes
-    await server.register(coverLetterRoutes, { prefix: '/api/cover-letter' });
+    process.on('SIGTERM', () => void gracefulShutdown('SIGTERM', server));
+    process.on('SIGINT', () => void gracefulShutdown('SIGINT', server));
 
     await server.listen({ port, host });
     console.log(`Server listening at http://${host}:${port}`);
