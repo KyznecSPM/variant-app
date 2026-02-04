@@ -1,22 +1,21 @@
-import 'dotenv/config';
 import fastify from 'fastify';
+
+import { registerCors } from './plugins/cors';
+import { coverLetterRoutes } from './routes/cover-letter';
 
 const port = parseInt(process.env.PORT || '8080', 10);
 const isDev = process.env.NODE_ENV !== 'production';
 const host = isDev ? 'localhost' : '0.0.0.0';
 
-const server = fastify();
-
-if (isDev) {
-  server.log.info('Running in development mode');
-}
+const server = fastify({
+  logger: isDev,
+});
 
 // Graceful shutdown handler
 const gracefulShutdown = async (signal: string) => {
   console.log(`Received ${signal}. Starting graceful shutdown...`);
 
   try {
-    // Close Fastify server
     await server.close();
     console.log('Server closed');
 
@@ -33,7 +32,11 @@ process.on('SIGINT', () => void gracefulShutdown('SIGINT'));
 
 const startServer = async () => {
   try {
-    // await server.register(metricsRoutes, { prefix: '/metrics' });
+    // Register plugins
+    await registerCors(server);
+
+    // Register routes
+    await server.register(coverLetterRoutes, { prefix: '/api/cover-letter' });
 
     await server.listen({ port, host });
     console.log(`Server listening at http://${host}:${port}`);

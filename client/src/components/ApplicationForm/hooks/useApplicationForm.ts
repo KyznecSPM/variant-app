@@ -1,13 +1,16 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { v4 as uuidv4 } from 'uuid';
 
+import { generateCoverLetter } from '../../../api';
 import { useCoverLetters, useCoverLettersActions } from '../../../providers';
 import { defaultValues } from '../constants';
 import type { ApplicationFormData } from '../types';
-import { generateApplicationText } from '../utils';
 
 export const useApplicationForm = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
   const methods = useForm<ApplicationFormData>({
     mode: 'onChange',
     defaultValues,
@@ -23,13 +26,27 @@ export const useApplicationForm = () => {
   }, [clearSelectedLetter]);
 
   const onSubmit = useCallback(
-    (data: ApplicationFormData) => {
-      if (isCompleted) return;
+    async (data: ApplicationFormData) => {
+      if (isCompleted || isLoading) return;
 
-      const applicationText = generateApplicationText(data);
-      addLetter({ id: uuidv4(), applicationText });
+      setIsLoading(true);
+      setError(null);
+
+      try {
+        const response = await generateCoverLetter(data);
+        addLetter({ id: uuidv4(), applicationText: response.applicationText });
+      } catch (err) {
+        const message =
+          err instanceof Error
+            ? err.message
+            : 'Failed to generate cover letter';
+        setError(message);
+        console.error('Cover letter generation error:', err);
+      } finally {
+        setIsLoading(false);
+      }
     },
-    [isCompleted, addLetter]
+    [isCompleted, isLoading, addLetter]
   );
 
   return {
@@ -37,5 +54,7 @@ export const useApplicationForm = () => {
     onSubmit,
     isCompleted,
     selectedLetterId,
+    isLoading,
+    error,
   };
 };

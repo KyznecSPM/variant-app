@@ -4,6 +4,14 @@
   "description": "",
   "author": "Emelianov D.O.",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "dotenv -- concurrently \"npm run dev:api\" \"npm run dev:client\"",
+    "dev:api": "dotenv -- npm run dev --prefix api",
+    "dev:client": "dotenv -- npm run dev --prefix client",
+    "build": "npm run build --prefix api && npm run build --prefix client",
+    "lint": "npm run lint --prefix api && npm run lint --prefix client"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "dotenv-cli": "^11.0.0"
   }
 }

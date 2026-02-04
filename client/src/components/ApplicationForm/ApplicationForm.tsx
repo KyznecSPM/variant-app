@@ -7,7 +7,7 @@ import { useApplicationForm } from './hooks';
 import { SubmitButton } from './SubmitButton';
 
 export const ApplicationForm = () => {
-  const { methods, onSubmit, isCompleted, selectedLetterId } =
+  const { methods, onSubmit, isCompleted, selectedLetterId, isLoading } =
     useApplicationForm();
 
   return (
@@ -18,6 +18,7 @@ export const ApplicationForm = () => {
         <SubmitButton
           isCompleted={isCompleted}
           regenerationMode={!!selectedLetterId}
+          isLoading={isLoading}
         />
       </form>
     </FormProvider>

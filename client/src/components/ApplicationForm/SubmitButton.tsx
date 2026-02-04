@@ -5,26 +5,34 @@ import { Button } from '../Button';
 interface SubmitButtonProps {
   isCompleted: boolean;
   regenerationMode: boolean;
+  isLoading: boolean;
 }
 
 export const SubmitButton = ({
   isCompleted,
   regenerationMode,
+  isLoading,
 }: SubmitButtonProps) => {
   const {
     formState: { isValid },
   } = useFormContext();
 
+  const getButtonText = () => {
+    if (isLoading) return 'Generating...';
+    if (regenerationMode) return 'Try Again';
+    return 'Generate Now';
+  };
+
   return (
     <Button
       type="submit"
       size="lg"
-      disabled={!isValid || isCompleted}
+      disabled={!isValid || isCompleted || isLoading}
       variant={regenerationMode ? 'secondary' : 'primary'}
-      icon={regenerationMode ? 'repeat' : undefined}
+      icon={regenerationMode && !isLoading ? 'repeat' : undefined}
       iconPosition="left"
     >
-      {regenerationMode ? 'Try Again' : 'Generate Now'}
+      {getButtonText()}
     </Button>
   );
 };
