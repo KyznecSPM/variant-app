@@ -1,6 +1,6 @@
 import cn from 'classnames';
 
-import CheckIcon from '../assets/icons/сheck.svg?react';
+import CheckIcon from '../assets/icons/check.svg?react';
 import { APPLICATIONS_MAX_COUNT } from '../constants';
 import { useCoverLetters } from '../providers';
 import styles from './Progress.module.css';
