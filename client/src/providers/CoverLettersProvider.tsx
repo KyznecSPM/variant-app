@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import { APPLICATIONS_MAX_COUNT } from '../constants';
 import type { CoverLetter } from './CoverLettersContext';
@@ -33,22 +33,26 @@ export const CoverLettersProvider = ({ children }: { children: ReactNode }) => {
   });
   const [selectedLetterId, setSelectedLetterId] = useState<string | null>(null);
 
-  const addLetter = (letter: CoverLetter) => {
+  const addLetter = useCallback((letter: CoverLetter) => {
     setLetters((prev) => {
       const newLetters = [...prev, letter];
       saveLettersToLocalStorage(newLetters);
       return newLetters;
     });
     setSelectedLetterId(letter.id);
-  };
+  }, []);
 
-  const removeLetter = (id: string) => {
+  const removeLetter = useCallback((id: string) => {
     setLetters((prev) => {
       const newLetters = prev.filter((l) => l.id !== id);
       saveLettersToLocalStorage(newLetters);
       return newLetters;
     });
-  };
+  }, []);
+
+  const clearSelectedLetter = useCallback(() => {
+    setSelectedLetterId(null);
+  }, []);
 
   const value = useMemo(() => {
     return {
@@ -59,9 +63,14 @@ export const CoverLettersProvider = ({ children }: { children: ReactNode }) => {
     };
   }, [letters, selectedLetterId]);
 
+  const actions = useMemo(
+    () => ({ addLetter, removeLetter, clearSelectedLetter }),
+    [addLetter, removeLetter, clearSelectedLetter]
+  );
+
   return (
     <CoverLettersStateContext.Provider value={value}>
-      <CoverLettersActionsContext.Provider value={{ addLetter, removeLetter }}>
+      <CoverLettersActionsContext.Provider value={actions}>
         {children}
       </CoverLettersActionsContext.Provider>
     </CoverLettersStateContext.Provider>

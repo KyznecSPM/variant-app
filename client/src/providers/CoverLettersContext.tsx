@@ -2,10 +2,6 @@ import { createContext, useContext } from 'react';
 
 export type CoverLetter = {
   id: string;
-  company: string;
-  jobTitle: string;
-  skills: string;
-  additionalDetails: string;
   applicationText: string;
 };
 
@@ -29,6 +25,7 @@ export const CoverLettersStateContext =
 type CoverLettersActions = {
   addLetter: (letter: CoverLetter) => void;
   removeLetter: (id: string) => void;
+  clearSelectedLetter: () => void;
 };
 
 export const CoverLettersActionsContext = createContext<

@@ -1,8 +1,8 @@
+import { useEffect } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 import { v4 as uuidv4 } from 'uuid';
 
 import { MAX_DETAILS_LENGTH } from '../constants';
-import type { CoverLetter } from '../providers';
 import { useCoverLetters, useCoverLettersActions } from '../providers';
 import styles from './ApplicationForm.module.css';
 import { Button } from './Button';
@@ -20,14 +20,19 @@ I am confident that my skills and enthusiasm would translate into valuable contr
 
 Thank you for considering my application. I eagerly await the opportunity to discuss my qualifications further.`;
 
-const defaultValues = {
+interface ApplicationFormData {
+  jobTitle: string;
+  company: string;
+  skills: string;
+  additionalDetails: string;
+}
+
+const defaultValues: ApplicationFormData = {
   jobTitle: '',
   company: '',
   skills: '',
   additionalDetails: '',
 };
-
-type ApplicationFormData = Omit<CoverLetter, 'id' | 'applicationText'>;
 
 export const ApplicationForm = () => {
   const {
@@ -40,8 +45,14 @@ export const ApplicationForm = () => {
     defaultValues,
   });
 
-  const { addLetter } = useCoverLettersActions();
-  const { isCompleted } = useCoverLetters();
+  const { addLetter, clearSelectedLetter } = useCoverLettersActions();
+  const { isCompleted, selectedLetterId } = useCoverLetters();
+
+  useEffect(() => {
+    return () => {
+      clearSelectedLetter();
+    };
+  }, [clearSelectedLetter]);
 
   const jobTitle = useWatch({ control, name: 'jobTitle' });
   const company = useWatch({ control, name: 'company' });
@@ -66,10 +77,6 @@ export const ApplicationForm = () => {
 
     addLetter({
       id: uuidv4(),
-      jobTitle: data.jobTitle,
-      company: data.company,
-      skills: data.skills,
-      additionalDetails: data.additionalDetails,
       applicationText,
     });
   };
@@ -149,8 +156,15 @@ export const ApplicationForm = () => {
           </div>
         </div>
 
-        <Button type="submit" size="lg" disabled={!isValid || isCompleted}>
-          Generate Now
+        <Button
+          type="submit"
+          size="lg"
+          disabled={!isValid || isCompleted}
+          variant={selectedLetterId ? 'secondary' : 'primary'}
+          icon={selectedLetterId ? 'repeat' : undefined}
+          iconPosition="left"
+        >
+          {selectedLetterId ? 'Try Again' : 'Generate Now'}
         </Button>
       </div>
     </form>

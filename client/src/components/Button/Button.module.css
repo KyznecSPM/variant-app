@@ -58,6 +58,11 @@
   gap: 12px;
 }
 
+.buttonVariant_secondary {
+  border-color: var(--color-border-input);
+  background-color: var(--color-bg-primary);
+}
+
 .buttonVariant_ghost {
   padding: 0;
   border: none;

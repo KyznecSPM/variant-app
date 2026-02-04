@@ -1,6 +1,7 @@
 import CopyIcon from '../../assets/icons/copy.svg?react';
 import HomeIcon from '../../assets/icons/home.svg?react';
 import PlusIcon from '../../assets/icons/plus.svg?react';
+import RepeatIcon from '../../assets/icons/repeat.svg?react';
 import TrashIcon from '../../assets/icons/trash.svg?react';
 import { TextColor } from '../Text/constants';
 
@@ -36,6 +37,7 @@ export const IconNamesMap = {
   home: HomeIcon,
   copy: CopyIcon,
   trash: TrashIcon,
+  repeat: RepeatIcon,
 } as const;
 
 export const IconNames = Object.keys(
