@@ -1,6 +1,6 @@
 import { ApplicationForm } from '../components/ApplicationForm';
-import { GeneratorPageLayout } from '../components/GeneratorPageLayout';
 import { Viewer } from '../components/Viewer';
+import { GeneratorPageLayout } from '../layouts';
 
 export const GeneratorPage = () => {
   return (

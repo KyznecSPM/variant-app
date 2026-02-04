@@ -1,7 +1,7 @@
 import { ApplicationsList } from '../components/ApplicationsList';
-import { ApplicationsPageLayout } from '../components/ApplicationsPageLayout';
 import { GoalBanner } from '../components/GoalBanner';
 import { TopBar } from '../components/TopBar';
+import { ApplicationsPageLayout } from '../layouts';
 import { useCoverLetters } from '../providers';
 
 export const ApplicationsPage = () => {

@@ -1,6 +1,6 @@
+import { GoalBanner } from '../components/GoalBanner';
 import { useCoverLetters } from '../providers';
 import styles from './GeneratorPageLayout.module.css';
-import { GoalBanner } from './GoalBanner';
 
 export const GeneratorPageLayout = ({
   children,

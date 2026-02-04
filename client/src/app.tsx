@@ -5,9 +5,9 @@ import './styles/base.css';
 
 import { Route, Routes } from 'react-router';
 
-import { AppLayout } from './components/AppLayout';
 import { Header } from './components/Header';
 import { ROUTES } from './constants';
+import { AppLayout } from './layouts';
 import { ApplicationsPage } from './pages/ApplicationsPage';
 import { GeneratorPage } from './pages/GeneratorPage';
 import { CoverLettersProvider } from './providers';
