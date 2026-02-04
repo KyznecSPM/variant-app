@@ -1,0 +1,27 @@
+.form {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.title {
+  transform: translateY(4px);
+}
+
+.titleContainer {
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.fieldsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.fieldRow {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr 1fr;
+}
