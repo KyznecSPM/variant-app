@@ -3,10 +3,17 @@
   height: 100%;
   flex-direction: column;
   justify-content: space-between;
-  padding: 24px;
+  padding: var(--spacing-md);
   border-radius: var(--br-md);
   background-color: var(--color-bg-secondary);
-  gap: 8px;
+  gap: var(--spacing-xs);
+}
+
+@media (width <= 639px) {
+  .viewer {
+    height: 400px;
+    padding: var(--spacing-sm);
+  }
 }
 
 .textContainer {
@@ -38,7 +45,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
-  gap: 8px;
+  gap: var(--spacing-xs);
 }
 
 .loading {

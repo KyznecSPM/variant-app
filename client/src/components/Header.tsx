@@ -18,14 +18,12 @@ export const Header = () => {
       <div className={styles.logo} onClick={handleHomeClick}>
         <Logo />
       </div>
-      <div className={styles.container}>
-        <Progress />
-        <IconButton
-          icon="home"
-          size={ButtonSize.sm}
-          onClick={handleHomeClick}
-        />
-      </div>
+      <Progress />
+      <IconButton
+        icon="home"
+        size={ButtonSize.sm}
+        onClick={handleHomeClick}
+      />
     </header>
   );
 };

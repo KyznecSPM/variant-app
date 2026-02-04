@@ -2,7 +2,7 @@
   display: flex;
   width: 100%;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--spacing-sm);
 }
 
 .title {
@@ -17,11 +17,17 @@
 .fieldsContainer {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--spacing-sm);
 }
 
 .fieldRow {
   display: grid;
-  gap: 16px;
+  gap: var(--spacing-sm);
   grid-template-columns: 1fr 1fr;
+}
+
+@media (width <= 639px) {
+  .fieldRow {
+    grid-template-columns: 1fr;
+  }
 }

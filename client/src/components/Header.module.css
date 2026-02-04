@@ -1,11 +1,12 @@
 .header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: var(--spacing-md);
 }
 
 .logo {
   display: flex;
+  flex: 1;
   align-items: center;
   cursor: pointer;
   transition: opacity 0.2s ease;
@@ -15,9 +16,21 @@
   opacity: 0.8;
 }
 
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 24px;
+@media (width <= 639px) {
+  .header {
+    display: grid;
+    gap: var(--spacing-sm);
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+  }
+
+  .logo {
+    flex: unset;
+  }
+
+  .header > :nth-child(2) {
+    order: 1;
+    grid-column: 1 / -1;
+    justify-self: center;
+  }
 }

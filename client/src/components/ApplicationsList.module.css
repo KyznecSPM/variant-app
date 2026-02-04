@@ -1,6 +1,13 @@
 .applicationsList {
   display: grid;
-  margin-top: 24px;
-  gap: 24px 16px;
+  margin-top: var(--spacing-md);
+  gap: var(--spacing-md) var(--spacing-sm);
   grid-template-columns: repeat(2, 1fr);
+}
+
+@media (width <= 639px) {
+  .applicationsList {
+    gap: var(--spacing-sm);
+    grid-template-columns: 1fr;
+  }
 }

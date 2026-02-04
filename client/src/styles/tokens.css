@@ -1,4 +1,12 @@
 :root {
+  /* ========================================
+     BREAKPOINTS (reference values)
+     ========================================
+     Desktop: 1024px+ (базовые стили)
+     Tablet:  640px — 1023px (@media max-width: 1023px)
+     Mobile:  0 — 639px (@media max-width: 639px)
+     ======================================== */
+
   /* Font Families */
   --font-family-display:
     'Fixel Display', -apple-system, blinkmacsystemfont, 'Segoe UI', system-ui,
@@ -64,4 +72,15 @@
   --shadow-focus: 0 0 0 3px rgb(8 116 67 / 10%);
   --shadow-error:
     0px 0px 0px 4px rgb(254 228 226 / 100%), 0px 1px 2px 0px rgb(16 24 40 / 5%);
+
+  /* Spacing */
+  --spacing-xs: 8px;
+  --spacing-sm: 16px;
+  --spacing-md: 24px;
+  --spacing-lg: 32px;
+  --spacing-xl: 48px;
+
+  /* Container */
+  --container-max-width: 1120px;
+  --container-padding: 32px;
 }

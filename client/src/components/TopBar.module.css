@@ -1,14 +1,26 @@
 .topBar {
   display: flex;
-  height: 76px;
+  min-height: 76px;
   justify-content: space-between;
   border-bottom: 1px solid var(--color-border);
 }
 
 .actions {
-  padding-top: 8px;
+  padding-top: var(--spacing-xs);
 }
 
 .title {
   padding-top: 4px;
+}
+
+@media (width <= 639px) {
+  .topBar {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    padding-bottom: var(--spacing-sm);
+  }
+
+  .actions {
+    padding-top: 0;
+  }
 }
