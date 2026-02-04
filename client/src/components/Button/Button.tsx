@@ -15,6 +15,7 @@ export interface ButtonProps {
   icon?: IconName;
   iconPosition?: 'left' | 'right';
   type?: 'button' | 'submit' | 'reset';
+  isLoading?: boolean;
 }
 
 export const Button = ({
@@ -27,12 +28,14 @@ export const Button = ({
   icon,
   iconPosition = 'left',
   type = 'button',
+  isLoading = false,
 }: ButtonProps) => {
   const buttonClass = cn(
     styles.button,
     className,
     variant && styles[`buttonVariant_${variant}`],
-    size && styles[`buttonSize_${size}`]
+    size && styles[`buttonSize_${size}`],
+    isLoading && styles.buttonLoading
   );
 
   const Icon = icon ? IconNamesMap[icon] : null;

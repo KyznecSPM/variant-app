@@ -31,6 +31,7 @@ export const SubmitButton = ({
       variant={regenerationMode ? 'secondary' : 'primary'}
       icon={isLoading ? 'loading' : regenerationMode ? 'repeat' : undefined}
       iconPosition="left"
+      isLoading={isLoading}
     >
       {getButtonText()}
     </Button>
