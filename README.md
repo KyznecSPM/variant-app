@@ -1,4 +1,4 @@
-https://variant-r8ihwkgom-kyznecspms-projects.vercel.app/
+https://variant-app-one.vercel.app/
 
 ## Техническое описание
 
@@ -13,7 +13,6 @@ https://variant-r8ihwkgom-kyznecspms-projects.vercel.app/
 - Запрос/ответ типизированы общими интерфейсами из `shared/types`.
 - Ошибки API возвращаются с кодом 500 и сообщением; клиент показывает ошибку в консоли (без UI).
 
-## Деплой и запуск
+## Запуск
 
-- Локально: `npm run dev` стартует одновременно `api` и `client`.
-- Vercel: UI статический (`client/dist`), API через serverless handler `api/src/vercel.ts` и rewrite `/api/*`.
+Локально: `npm run dev` стартует одновременно `api` и `client`.
