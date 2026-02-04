@@ -9,9 +9,22 @@ export type CoverLetter = {
   applicationText: string;
 };
 
-export const CoverLettersStateContext = createContext<
-  CoverLetter[] | undefined
->(undefined);
+interface CoverLettersState {
+  letters: CoverLetter[];
+  selectedLetterId: string | null;
+  isCompleted: boolean;
+  count: number;
+}
+
+const defaultState: CoverLettersState = {
+  letters: [],
+  selectedLetterId: null,
+  isCompleted: false,
+  count: 0,
+};
+
+export const CoverLettersStateContext =
+  createContext<CoverLettersState>(defaultState);
 
 type CoverLettersActions = {
   addLetter: (letter: CoverLetter) => void;

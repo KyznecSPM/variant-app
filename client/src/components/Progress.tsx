@@ -7,9 +7,7 @@ import styles from './Progress.module.css';
 import { Text } from './Text';
 
 export const Progress = () => {
-  const letters = useCoverLetters();
-  const count = letters.length;
-  const isCompleted = count === APPLICATIONS_MAX_COUNT;
+  const { isCompleted, count } = useCoverLetters();
 
   return (
     <div className={styles.progress}>

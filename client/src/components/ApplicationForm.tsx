@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { MAX_DETAILS_LENGTH } from '../constants';
 import type { CoverLetter } from '../providers';
-import { useCoverLettersActions } from '../providers';
+import { useCoverLetters, useCoverLettersActions } from '../providers';
 import styles from './ApplicationForm.module.css';
 import { Button } from './Button';
 import { Text } from './Text';
@@ -41,6 +41,7 @@ export const ApplicationForm = () => {
   });
 
   const { addLetter } = useCoverLettersActions();
+  const { isCompleted } = useCoverLetters();
 
   const jobTitle = useWatch({ control, name: 'jobTitle' });
   const company = useWatch({ control, name: 'company' });
@@ -53,21 +54,23 @@ export const ApplicationForm = () => {
   };
 
   const onSubmit = (data: ApplicationFormData) => {
-    // TODO: Implement form submission logic
-    console.log('Form submitted:', data);
+    if (isCompleted) return;
+
+    const applicationText = MOCK_APPLICATION_TEXT.replace(
+      '[JobTitle]',
+      data.jobTitle
+    )
+      .replace('[Company]', data.company)
+      .replace('[SkillsList]', data.skills)
+      .replace('[AdditionalDetails]', data.additionalDetails);
+
     addLetter({
       id: uuidv4(),
       jobTitle: data.jobTitle,
       company: data.company,
       skills: data.skills,
       additionalDetails: data.additionalDetails,
-      applicationText: MOCK_APPLICATION_TEXT.replace(
-        '[JobTitle]',
-        data.jobTitle
-      )
-        .replace('[Company]', data.company)
-        .replace('[SkillsList]', data.skills)
-        .replace('[AdditionalDetails]', data.additionalDetails),
+      applicationText,
     });
   };
 
@@ -146,7 +149,7 @@ export const ApplicationForm = () => {
           </div>
         </div>
 
-        <Button type="submit" size="lg" disabled={!isValid}>
+        <Button type="submit" size="lg" disabled={!isValid || isCompleted}>
           Generate Now
         </Button>
       </div>

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router';
 
-import { APPLICATIONS_MAX_COUNT, ROUTES } from '../constants';
+import { ROUTES } from '../constants';
 import { useCoverLetters } from '../providers';
 import { Button, ButtonSize } from './Button';
 import styles from './GoalBanner.module.css';
@@ -14,9 +14,7 @@ const buttonText = 'Create New';
 
 export const GoalBanner = () => {
   const navigate = useNavigate();
-  const letters = useCoverLetters();
-  const count = letters.length;
-  const isCompleted = count === APPLICATIONS_MAX_COUNT;
+  const { isCompleted, count } = useCoverLetters();
 
   const handleCreateNewClick = () => {
     if (isCompleted) {

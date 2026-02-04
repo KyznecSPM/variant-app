@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 
+import { APPLICATIONS_MAX_COUNT } from '../constants';
 import type { CoverLetter } from './CoverLettersContext';
 import {
   CoverLettersActionsContext,
@@ -30,21 +31,36 @@ export const CoverLettersProvider = ({ children }: { children: ReactNode }) => {
   const [letters, setLetters] = useState<CoverLetter[]>(() => {
     return getLettersFromLocalStorage();
   });
-
-  useEffect(() => {
-    saveLettersToLocalStorage(letters);
-  }, [letters]);
+  const [selectedLetterId, setSelectedLetterId] = useState<string | null>(null);
 
   const addLetter = (letter: CoverLetter) => {
-    setLetters((prev) => [...prev, letter]);
+    setLetters((prev) => {
+      const newLetters = [...prev, letter];
+      saveLettersToLocalStorage(newLetters);
+      return newLetters;
+    });
+    setSelectedLetterId(letter.id);
   };
 
   const removeLetter = (id: string) => {
-    setLetters((prev) => prev.filter((l) => l.id !== id));
+    setLetters((prev) => {
+      const newLetters = prev.filter((l) => l.id !== id);
+      saveLettersToLocalStorage(newLetters);
+      return newLetters;
+    });
   };
 
+  const value = useMemo(() => {
+    return {
+      letters,
+      selectedLetterId,
+      isCompleted: letters.length === APPLICATIONS_MAX_COUNT,
+      count: letters.length,
+    };
+  }, [letters, selectedLetterId]);
+
   return (
-    <CoverLettersStateContext.Provider value={letters}>
+    <CoverLettersStateContext.Provider value={value}>
       <CoverLettersActionsContext.Provider value={{ addLetter, removeLetter }}>
         {children}
       </CoverLettersActionsContext.Provider>
