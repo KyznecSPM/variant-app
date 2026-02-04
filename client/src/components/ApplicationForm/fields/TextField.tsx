@@ -1,5 +1,7 @@
+import cn from 'classnames';
 import { useFormContext } from 'react-hook-form';
 
+import shared from './shared.module.css';
 import styles from './TextField.module.css';
 
 interface TextFieldProps {
@@ -18,14 +20,14 @@ export const TextField = ({
   const { register } = useFormContext();
 
   return (
-    <div className={styles.field}>
-      <label htmlFor={name} className={styles.label}>
+    <div className={shared.field}>
+      <label htmlFor={name} className={shared.label}>
         {label}
       </label>
       <input
         id={name}
         type="text"
-        className={styles.input}
+        className={cn(shared.baseInput, styles.input)}
         placeholder={placeholder}
         {...register(name, {
           required,

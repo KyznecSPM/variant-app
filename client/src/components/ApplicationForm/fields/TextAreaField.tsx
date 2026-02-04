@@ -1,5 +1,7 @@
+import cn from 'classnames';
 import { useFormContext, useWatch } from 'react-hook-form';
 
+import shared from './shared.module.css';
 import styles from './TextAreaField.module.css';
 
 interface TextAreaFieldProps {
@@ -22,13 +24,15 @@ export const TextAreaField = ({
   const isOverLimit = maxLength ? currentLength > maxLength : false;
 
   return (
-    <div className={styles.field}>
-      <label htmlFor={name} className={styles.label}>
+    <div className={shared.field}>
+      <label htmlFor={name} className={shared.label}>
         {label}
       </label>
       <textarea
         id={name}
-        className={`${styles.textarea} ${isOverLimit ? styles.textareaError : ''}`}
+        className={cn(shared.baseInput, styles.textarea, {
+          [shared.inputError]: isOverLimit,
+        })}
         placeholder={placeholder}
         {...register(name, {
           maxLength,
@@ -36,7 +40,9 @@ export const TextAreaField = ({
       />
       {maxLength && (
         <div
-          className={`${styles.counter} ${isOverLimit ? styles.counterError : ''}`}
+          className={cn(shared.counter, {
+            [shared.counterError]: isOverLimit,
+          })}
         >
           {currentLength}/{maxLength}
         </div>
