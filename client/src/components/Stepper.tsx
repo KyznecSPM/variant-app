@@ -1,4 +1,5 @@
 import cn from 'classnames';
+import { memo } from 'react';
 
 import { APPLICATIONS_MAX_COUNT } from '../constants';
 import styles from './Stepper.module.css';
@@ -8,7 +9,7 @@ interface StepperProps {
   count: number;
 }
 
-export const Stepper = ({ count = 0 }: StepperProps) => {
+export const Stepper = memo(({ count = 0 }: StepperProps) => {
   return (
     <div className={styles.stepperContainer}>
       <div className={styles.stepperItems}>
@@ -26,4 +27,6 @@ export const Stepper = ({ count = 0 }: StepperProps) => {
       </div>
     </div>
   );
-};
+});
+
+Stepper.displayName = 'Stepper';

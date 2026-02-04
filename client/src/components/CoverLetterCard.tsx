@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import { useCopyToClipboard } from '../hooks';
 import type { CoverLetter } from '../providers';
 import { useCoverLettersActions } from '../providers';
@@ -8,7 +10,7 @@ interface Props {
   coverLetter: CoverLetter;
 }
 
-export const CoverLetterCard = ({ coverLetter }: Props) => {
+export const CoverLetterCard = memo(({ coverLetter }: Props) => {
   const { removeLetter } = useCoverLettersActions();
   const { copy, copied } = useCopyToClipboard();
 
@@ -43,4 +45,6 @@ export const CoverLetterCard = ({ coverLetter }: Props) => {
       </div>
     </div>
   );
-};
+});
+
+CoverLetterCard.displayName = 'CoverLetterCard';

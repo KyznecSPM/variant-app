@@ -1,4 +1,5 @@
 import cn from 'classnames';
+import { memo } from 'react';
 
 import CheckIcon from '../assets/icons/check.svg?react';
 import { APPLICATIONS_MAX_COUNT } from '../constants';
@@ -6,7 +7,7 @@ import { useCoverLetters } from '../providers';
 import styles from './Progress.module.css';
 import { Text } from './Text';
 
-export const Progress = () => {
+export const Progress = memo(() => {
   const { isCompleted, count } = useCoverLetters();
 
   return (
@@ -32,4 +33,6 @@ export const Progress = () => {
       )}
     </div>
   );
-};
+});
+
+Progress.displayName = 'Progress';
