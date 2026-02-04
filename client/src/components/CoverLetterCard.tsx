@@ -1,3 +1,4 @@
+import { useCopyToClipboard } from '../hooks';
 import type { CoverLetter } from '../providers';
 import { useCoverLettersActions } from '../providers';
 import { Button } from './Button';
@@ -9,16 +10,15 @@ interface Props {
 
 export const CoverLetterCard = ({ coverLetter }: Props) => {
   const { removeLetter } = useCoverLettersActions();
+  const { copy, copied } = useCopyToClipboard();
 
   const handleDelete = () => {
     removeLetter(coverLetter.id);
   };
 
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(coverLetter.applicationText);
-    } catch (err) {
-      console.error('Failed to copy:', err);
+  const handleCopy = () => {
+    if (coverLetter.applicationText) {
+      copy(coverLetter.applicationText);
     }
   };
 
@@ -38,7 +38,7 @@ export const CoverLetterCard = ({ coverLetter }: Props) => {
           iconPosition="right"
           onClick={handleCopy}
         >
-          Copy to clipboard
+          {copied ? 'Copied!' : 'Copy to clipboard'}
         </Button>
       </div>
     </div>

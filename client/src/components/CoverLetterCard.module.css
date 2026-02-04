@@ -6,7 +6,7 @@
   justify-content: space-between;
   padding: 24px;
   border-radius: var(--br-md);
-  background-color: #f2f4f7;
+  background-color: var(--color-bg-secondary);
   gap: 8px;
 }
 

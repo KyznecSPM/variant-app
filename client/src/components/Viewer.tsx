@@ -1,5 +1,6 @@
 import cn from 'classnames';
 
+import { useCopyToClipboard } from '../hooks';
 import { useCoverLetters } from '../providers';
 import { Button } from './Button';
 import styles from './Viewer.module.css';
@@ -9,18 +10,15 @@ const PLACEHOLDER_TEXT =
 
 export const Viewer = () => {
   const { letters, selectedLetterId, isGenerating } = useCoverLetters();
+  const { copy, copied } = useCopyToClipboard();
 
   const applicationText = letters.find(
     (letter) => letter.id === selectedLetterId
   )?.applicationText;
 
-  const handleCopy = async () => {
-    if (!applicationText) return;
-
-    try {
-      await navigator.clipboard.writeText(applicationText);
-    } catch (err) {
-      console.error('Failed to copy:', err);
+  const handleCopy = () => {
+    if (applicationText) {
+      copy(applicationText);
     }
   };
 
@@ -49,7 +47,7 @@ export const Viewer = () => {
           onClick={handleCopy}
           disabled={!applicationText}
         >
-          Copy to clipboard
+          {copied ? 'Copied!' : 'Copy to clipboard'}
         </Button>
       </div>
     </div>
