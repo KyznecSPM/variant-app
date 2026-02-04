@@ -8,7 +8,6 @@ import { defaultValues } from '../constants';
 import type { ApplicationFormData } from '../types';
 
 export const useApplicationForm = () => {
-  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const methods = useForm<ApplicationFormData>({
@@ -16,8 +15,9 @@ export const useApplicationForm = () => {
     defaultValues,
   });
 
-  const { addLetter, clearSelectedLetter } = useCoverLettersActions();
-  const { isCompleted, selectedLetterId } = useCoverLetters();
+  const { addLetter, clearSelectedLetter, setIsGenerating } =
+    useCoverLettersActions();
+  const { isCompleted, selectedLetterId, isGenerating } = useCoverLetters();
 
   useEffect(() => {
     return () => {
@@ -27,9 +27,9 @@ export const useApplicationForm = () => {
 
   const onSubmit = useCallback(
     async (data: ApplicationFormData) => {
-      if (isCompleted || isLoading) return;
+      if (isCompleted || isGenerating) return;
 
-      setIsLoading(true);
+      setIsGenerating(true);
       setError(null);
 
       try {
@@ -43,10 +43,10 @@ export const useApplicationForm = () => {
         setError(message);
         console.error('Cover letter generation error:', err);
       } finally {
-        setIsLoading(false);
+        setIsGenerating(false);
       }
     },
-    [isCompleted, isLoading, addLetter]
+    [isCompleted, isGenerating, addLetter, setIsGenerating]
   );
 
   return {
@@ -54,7 +54,7 @@ export const useApplicationForm = () => {
     onSubmit,
     isCompleted,
     selectedLetterId,
-    isLoading,
+    isLoading: isGenerating,
     error,
   };
 };

@@ -10,6 +10,7 @@ interface CoverLettersState {
   selectedLetterId: string | null;
   isCompleted: boolean;
   count: number;
+  isGenerating: boolean;
 }
 
 const defaultState: CoverLettersState = {
@@ -17,6 +18,7 @@ const defaultState: CoverLettersState = {
   selectedLetterId: null,
   isCompleted: false,
   count: 0,
+  isGenerating: false,
 };
 
 export const CoverLettersStateContext =
@@ -26,6 +28,7 @@ type CoverLettersActions = {
   addLetter: (letter: CoverLetter) => void;
   removeLetter: (id: string) => void;
   clearSelectedLetter: () => void;
+  setIsGenerating: (isGenerating: boolean) => void;
 };
 
 export const CoverLettersActionsContext = createContext<

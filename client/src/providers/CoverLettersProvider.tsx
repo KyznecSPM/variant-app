@@ -32,6 +32,7 @@ export const CoverLettersProvider = ({ children }: { children: ReactNode }) => {
     return getLettersFromLocalStorage();
   });
   const [selectedLetterId, setSelectedLetterId] = useState<string | null>(null);
+  const [isGenerating, setIsGenerating] = useState<boolean>(false);
 
   const addLetter = useCallback((letter: CoverLetter) => {
     setLetters((prev) => {
@@ -60,11 +61,12 @@ export const CoverLettersProvider = ({ children }: { children: ReactNode }) => {
       selectedLetterId,
       isCompleted: letters.length === APPLICATIONS_MAX_COUNT,
       count: letters.length,
+      isGenerating,
     };
-  }, [letters, selectedLetterId]);
+  }, [letters, selectedLetterId, isGenerating]);
 
   const actions = useMemo(
-    () => ({ addLetter, removeLetter, clearSelectedLetter }),
+    () => ({ addLetter, removeLetter, clearSelectedLetter, setIsGenerating }),
     [addLetter, removeLetter, clearSelectedLetter]
   );
 

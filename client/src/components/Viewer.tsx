@@ -1,3 +1,5 @@
+import cn from 'classnames';
+
 import { useCoverLetters } from '../providers';
 import { Button } from './Button';
 import styles from './Viewer.module.css';
@@ -6,9 +8,8 @@ const PLACEHOLDER_TEXT =
   'Your personalized job application will appear here...';
 
 export const Viewer = () => {
-  const { letters, selectedLetterId } = useCoverLetters();
+  const { letters, selectedLetterId, isGenerating } = useCoverLetters();
 
-  // Get the last letter (most recent)
   const applicationText = letters.find(
     (letter) => letter.id === selectedLetterId
   )?.applicationText;
@@ -24,7 +25,14 @@ export const Viewer = () => {
   };
 
   return (
-    <div className={styles.viewer}>
+    <div className={cn(styles.viewer, { [styles.loading]: isGenerating })}>
+      {isGenerating && (
+        <div className={styles.loaderContainer}>
+          <div className={styles.sphereShadow} />
+          <div className={styles.sphere} />
+        </div>
+      )}
+
       <div className={styles.textContainer}>
         {applicationText ? (
           <p className={styles.text}>{applicationText}</p>
