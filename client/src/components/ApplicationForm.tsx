@@ -58,6 +58,8 @@ export const ApplicationForm = () => {
   const company = useWatch({ control, name: 'company' });
   const additionalDetails = useWatch({ control, name: 'additionalDetails' });
 
+  const isOverLimit = (additionalDetails?.length || 0) > MAX_DETAILS_LENGTH;
+
   const getTitle = (): string => {
     if (!jobTitle && !company) return 'New application';
     if (jobTitle && company) return `${jobTitle}, ${company}`;
@@ -145,13 +147,15 @@ export const ApplicationForm = () => {
           </label>
           <textarea
             id="additionalDetails"
-            className={styles.textarea}
+            className={`${styles.textarea} ${isOverLimit ? styles.textareaError : ''}`}
             placeholder="Describe why you are a great fit or paste your bio"
             {...register('additionalDetails', {
               maxLength: MAX_DETAILS_LENGTH,
             })}
           />
-          <div className={styles.counter}>
+          <div
+            className={`${styles.counter} ${isOverLimit ? styles.counterError : ''}`}
+          >
             {additionalDetails?.length || 0}/{MAX_DETAILS_LENGTH}
           </div>
         </div>

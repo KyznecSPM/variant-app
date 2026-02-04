@@ -83,3 +83,17 @@
   letter-spacing: var(--ls-caption);
   line-height: var(--lh-label-sm);
 }
+
+.counterError {
+  color: var(--color-error);
+}
+
+.textareaError {
+  border-color: var(--color-border-error);
+  box-shadow: var(--shadow-error);
+}
+
+.textareaError:focus {
+  border-color: var(--color-border-error);
+  box-shadow: var(--shadow-error);
+}
