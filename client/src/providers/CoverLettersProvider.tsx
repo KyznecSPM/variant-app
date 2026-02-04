@@ -67,7 +67,7 @@ export const CoverLettersProvider = ({ children }: { children: ReactNode }) => {
 
   const actions = useMemo(
     () => ({ addLetter, removeLetter, clearSelectedLetter, setIsGenerating }),
-    [addLetter, removeLetter, clearSelectedLetter]
+    [addLetter, removeLetter, clearSelectedLetter, setIsGenerating]
   );
 
   return (

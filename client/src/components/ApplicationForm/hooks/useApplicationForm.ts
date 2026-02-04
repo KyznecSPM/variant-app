@@ -55,6 +55,7 @@ export const useApplicationForm = () => {
     isCompleted,
     selectedLetterId,
     isLoading: isGenerating,
+    // TODO: add component for error to the form
     error,
   };
 };

@@ -13,16 +13,9 @@ interface CoverLettersState {
   isGenerating: boolean;
 }
 
-const defaultState: CoverLettersState = {
-  letters: [],
-  selectedLetterId: null,
-  isCompleted: false,
-  count: 0,
-  isGenerating: false,
-};
-
-export const CoverLettersStateContext =
-  createContext<CoverLettersState>(defaultState);
+export const CoverLettersStateContext = createContext<CoverLettersState | null>(
+  null
+);
 
 type CoverLettersActions = {
   addLetter: (letter: CoverLetter) => void;
