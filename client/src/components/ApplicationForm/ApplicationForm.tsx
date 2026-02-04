@@ -17,7 +17,7 @@ export const ApplicationForm = () => {
         <FormFields />
         <SubmitButton
           isCompleted={isCompleted}
-          selectedLetterId={selectedLetterId}
+          regenerationMode={!!selectedLetterId}
         />
       </form>
     </FormProvider>

@@ -4,12 +4,12 @@ import { Button } from '../Button';
 
 interface SubmitButtonProps {
   isCompleted: boolean;
-  selectedLetterId: string | null;
+  regenerationMode: boolean;
 }
 
 export const SubmitButton = ({
   isCompleted,
-  selectedLetterId,
+  regenerationMode,
 }: SubmitButtonProps) => {
   const {
     formState: { isValid },
@@ -20,11 +20,11 @@ export const SubmitButton = ({
       type="submit"
       size="lg"
       disabled={!isValid || isCompleted}
-      variant={selectedLetterId ? 'secondary' : 'primary'}
-      icon={selectedLetterId ? 'repeat' : undefined}
+      variant={regenerationMode ? 'secondary' : 'primary'}
+      icon={regenerationMode ? 'repeat' : undefined}
       iconPosition="left"
     >
-      {selectedLetterId ? 'Try Again' : 'Generate Now'}
+      {regenerationMode ? 'Try Again' : 'Generate Now'}
     </Button>
   );
 };
