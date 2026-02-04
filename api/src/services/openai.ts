@@ -1,3 +1,4 @@
+import type { GenerateCoverLetterRequest } from '../../../shared/types';
 import OpenAI from 'openai';
 
 const openai = new OpenAI({
@@ -15,14 +16,7 @@ Write in a professional yet approachable tone.
 Do not use markdown formatting, headers, or bullet points.
 Write as a continuous letter with proper paragraphs.`;
 
-interface CoverLetterInput {
-  jobTitle: string;
-  company: string;
-  skills: string;
-  additionalDetails: string;
-}
-
-const buildUserPrompt = (input: CoverLetterInput): string => {
+const buildUserPrompt = (input: GenerateCoverLetterRequest): string => {
   const parts = [
     `Job Title: ${input.jobTitle}`,
     `Company: ${input.company}`,
@@ -36,7 +30,7 @@ const buildUserPrompt = (input: CoverLetterInput): string => {
   return parts.join('\n');
 };
 
-export const generateCoverLetter = async (input: CoverLetterInput): Promise<string> => {
+export const generateCoverLetter = async (input: GenerateCoverLetterRequest): Promise<string> => {
   const userPrompt = buildUserPrompt(input);
 
   const completion = await openai.chat.completions.create({

@@ -1,13 +1,7 @@
-interface GenerateCoverLetterRequest {
-  jobTitle: string;
-  company: string;
-  skills: string;
-  additionalDetails: string;
-}
-
-interface GenerateCoverLetterResponse {
-  applicationText: string;
-}
+import type {
+  GenerateCoverLetterRequest,
+  GenerateCoverLetterResponse,
+} from '@shared/types';
 
 export const generateCoverLetter = async (
   data: GenerateCoverLetterRequest
