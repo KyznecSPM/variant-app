@@ -36,6 +36,7 @@ export const Button = ({
   );
 
   const Icon = icon ? IconNamesMap[icon] : null;
+  const iconClass = icon === 'loading' ? styles.loading : undefined;
 
   return (
     <button
@@ -45,13 +46,21 @@ export const Button = ({
       disabled={disabled}
     >
       {Icon && iconPosition === 'left' && (
-        <Icon width={IconSizeMap[size]} height={IconSizeMap[size]} />
+        <Icon
+          width={IconSizeMap[size]}
+          height={IconSizeMap[size]}
+          className={iconClass}
+        />
       )}
       <Text.Label size={size} color={TextColorMap[variant]}>
         {children}
       </Text.Label>
       {Icon && iconPosition === 'right' && (
-        <Icon width={IconSizeMap[size]} height={IconSizeMap[size]} />
+        <Icon
+          width={IconSizeMap[size]}
+          height={IconSizeMap[size]}
+          className={iconClass}
+        />
       )}
     </button>
   );

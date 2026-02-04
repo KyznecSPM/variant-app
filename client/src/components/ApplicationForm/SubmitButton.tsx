@@ -18,7 +18,7 @@ export const SubmitButton = ({
   } = useFormContext();
 
   const getButtonText = () => {
-    if (isLoading) return 'Generating...';
+    if (isLoading) return '';
     if (regenerationMode) return 'Try Again';
     return 'Generate Now';
   };
@@ -29,7 +29,7 @@ export const SubmitButton = ({
       size="lg"
       disabled={!isValid || isCompleted || isLoading}
       variant={regenerationMode ? 'secondary' : 'primary'}
-      icon={regenerationMode && !isLoading ? 'repeat' : undefined}
+      icon={isLoading ? 'loading' : regenerationMode ? 'repeat' : undefined}
       iconPosition="left"
     >
       {getButtonText()}

@@ -17,6 +17,24 @@
   flex-shrink: 0;
 }
 
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading {
+  animation: spin 1s linear infinite;
+}
+
+.button svg[class*='loading'] {
+  animation: spin 1s linear infinite;
+}
+
 .button > span {
   display: inline-flex;
   align-items: center;

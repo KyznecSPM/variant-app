@@ -1,5 +1,6 @@
 import CopyIcon from '../../assets/icons/copy.svg?react';
 import HomeIcon from '../../assets/icons/home.svg?react';
+import LoadingIcon from '../../assets/icons/loading.svg?react';
 import PlusIcon from '../../assets/icons/plus.svg?react';
 import RepeatIcon from '../../assets/icons/repeat.svg?react';
 import TrashIcon from '../../assets/icons/trash.svg?react';
@@ -38,6 +39,7 @@ export const IconNamesMap = {
   copy: CopyIcon,
   trash: TrashIcon,
   repeat: RepeatIcon,
+  loading: LoadingIcon,
 } as const;
 
 export const IconNames = Object.keys(
